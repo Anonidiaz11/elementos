@@ -116,9 +116,10 @@ plt.triplot(x, y, tri, linewidth=0.2)
 plt.axis("image")
 plt.show()
 for j in range(0,fila_ele):
-    fuente[j,0]=np.sin(pts[j,0])*np.sin(pts[j,1])
+    fuente[j,0]=np.sin(pts[j,0])*np.sin(pts[j,1]) #fuente en los puntos (elementos)
 stiff, mass, rhs = assem(pts[:, :2], tri, fuente)   
-u_ini = np.sin(x)*np.sin(y-2)
+u_ini = np.sin(x)*np.sin(y-2)#condicion inicial
+#grafica
 fig0 = plt.figure()
 ax0 = fig0.add_subplot(projection='3d')
 ax0.plot_trisurf(x, y, u_ini, triangles=tri, cmap="viridis")
@@ -149,4 +150,4 @@ else:
     os.mkdir(carpeta)
 for cont in range(niter):
     malla.point_data["solucion"] = u_total[:, cont]
-    malla.write(carpeta + "cuadrado_anim" + str(cont).zfill(2) + ".vtk")
+    malla.write(carpeta + "cuadrado_anim" + str(cont).zfill(2) + ".vtk") #exportamos la solucion a un formato vtk para realizar la visualizacion en el software paraview.
